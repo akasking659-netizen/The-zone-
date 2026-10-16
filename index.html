@@ -1,58 +1,306 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AKASH MARKET</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#103d2e">
+<title>AKASH MARKET | Shop Smart</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f3f7f2;color:#173b2b}header{background:#075e43;color:white;padding:18px;text-align:center;font-size:24px;font-weight:bold}.hero{background:#ddfca5;text-align:center;padding:40px 15px}.hero h1{font-size:38px}.hero input{width:95%;max-width:500px;padding:14px;border:1px solid #ccc;border-radius:10px}.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:15px;max-width:1000px;margin:auto}.card,.panel{background:white;padding:15px;border-radius:15px;box-shadow:0 4px 15px #0001}.emoji{font-size:55px;background:#eef5ec;border-radius:12px;padding:20px;text-align:center}.card h3{min-height:38px}.price{font-size:21px;color:#08744d;font-weight:bold}button{cursor:pointer;border:0;border-radius:9px;padding:11px;background:#08744d;color:white;font-weight:bold}.card button{width:100%;margin-top:10px}.checkout{max-width:900px;margin:15px auto;padding:15px;display:grid;grid-template-columns:1fr 1fr;gap:14px}.panel h2{margin-top:0}.cartrow{padding:10px 0;border-bottom:1px solid #ddd}.qty{display:flex;align-items:center;gap:8px;margin-top:8px}.qty button{padding:6px 12px}.field{margin:12px 0}.field label{display:block;margin-bottom:5px;font-weight:bold}.field input,.field textarea,.field select{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px}.field textarea{min-height:70px}.whatsapp{width:100%;background:#16884b;margin-top:10px}.total{font-size:21px;font-weight:bold;border-top:1px solid #ddd;padding-top:12px}footer{background:#103d2e;color:white;text-align:center;padding:24px}@media(max-width:600px){.checkout{grid-template-columns:1fr}.hero h1{font-size:32px}.products{gap:10px;padding:10px}.card{padding:10px}.emoji{font-size:45px;padding:15px}}
+:root{--g:#08784f;--dark:#103d2e;--lime:#dcfca4;--bg:#f5f7f3;--ink:#17231d;--muted:#69766e;--line:#e2e9e1}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial, sans-serif}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.top{background:var(--dark);color:white;text-align:center;padding:9px;font-size:12px}
+header{position:sticky;top:0;background:white;border-bottom:1px solid var(--line);z-index:5}
+.nav{max-width:1150px;margin:auto;padding:12px 16px;display:flex;align-items:center;gap:10px}
+.brand{display:flex;align-items:center;gap:8px;font-weight:900;white-space:nowrap}
+.logo{background:var(--g);color:white;border-radius:12px;width:40px;height:40px;display:grid;place-items:center;font-size:23px}
+.search{flex:1;min-width:60px}
+.search input{width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;background:#f7f9f6}
+.btn{border:0;border-radius:10px;padding:11px 13px;font-weight:bold}
+.green{background:var(--g);color:white}
+.login{background:white;border:1px solid var(--line);color:var(--dark)}
+.hero{background:linear-gradient(120deg,#dcfca4,#efffd5)}
+.heroIn{max-width:1150px;margin:auto;padding:55px 22px;display:grid;grid-template-columns:1fr .6fr;align-items:center;gap:20px}
+.pill{background:#ffffffb8;border-radius:30px;padding:8px 12px;font-size:12px;font-weight:bold}
+h1{font-size:clamp(40px,6vw,68px);line-height:1.02;letter-spacing:-2px;margin:20px 0 14px}
+.hero p{max-width:520px;line-height:1.7;color:#405849}
+.art{font-size:120px;text-align:center;background:#ffffff91;border-radius:50%;width:250px;height:250px;display:grid;place-items:center;justify-self:center}
+.perks{max-width:1150px;margin:auto;padding:16px 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.perk,.panel{background:white;border:1px solid var(--line);border-radius:15px;padding:16px}
+.perk small{display:block;color:var(--muted);margin-top:5px}
+main{max-width:1150px;margin:auto;padding:28px 18px 55px}
+.heading h2{font-size:29px;margin-bottom:6px}
+.heading p,.sub{color:var(--muted)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0}
+.filter{background:white;border:1px solid var(--line);border-radius:25px;padding:9px 14px}
+.filter.active{background:var(--dark);color:white}
+.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+.product{background:white;border:1px solid var(--line);border-radius:17px;padding:12px;display:flex;flex-direction:column;box-shadow:0 8px 24px #183b2910}
+.product img{width:100%;height:165px;object-fit:cover;border-radius:12px;background:#eef5ec}
+.product small{color:var(--muted);margin-top:10px}
+.product h3{font-size:16px;margin:7px 0 12px}
+.price{font-size:20px;color:var(--g);font-weight:900;margin-top:auto}
+.add{margin-top:10px;background:var(--g);color:white;border:0;border-radius:9px;padding:11px;font-weight:bold}
+.checkout{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:45px}
+.panel h2{margin:0 0 6px}
+.cartrow{display:grid;grid-template-columns:48px 1fr auto;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.cartrow img{width:48px;height:48px;object-fit:cover;border-radius:8px}
+.cartrow small{display:block;color:var(--muted)}
+.qty{display:flex;align-items:center;gap:7px;margin-top:5px;flex-wrap:wrap}
+.qty button{background:white;border:1px solid var(--line);border-radius:6px;padding:3px 8px}
+.sum{display:flex;justify-content:space-between;padding:8px 0}
+.grand{font-size:20px;font-weight:bold;border-top:1px solid var(--line);padding-top:13px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:5px}
+.field.full{grid-column:1/-1}
+.field label{font-size:12px;font-weight:bold}
+.field input,.field textarea,.field select{width:100%;padding:11px;border:1px solid var(--line);border-radius:9px;background:#fbfcfa}
+.field textarea{min-height:70px}
+.whatsapp{width:100%;background:#16884b;color:white;border:0;padding:14px;border-radius:10px;font-weight:bold;margin-top:15px}
+.whatsapp:disabled{opacity:.45}
+.note,.adminNote{font-size:12px;color:var(--muted);line-height:1.6}
+footer{background:var(--dark);color:#d9e9df;text-align:center;padding:28px}
+.modal{display:none;position:fixed;inset:0;background:#10251ddd;z-index:50;overflow:auto;padding:15px}
+.box{max-width:760px;margin:25px auto;background:white;border-radius:18px;padding:20px}
+.boxHead{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.adminGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}
+.adminGrid input,.adminGrid select{width:100%;padding:11px;border:1px solid var(--line);border-radius:9px}
+.adminList{border-top:1px solid var(--line);margin-top:18px}
+.adminItem{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--line)}
+.adminItem button{background:white;border:1px solid var(--line);padding:7px;border-radius:7px}
+.toast{display:none;position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#17231d;color:white;border-radius:10px;padding:12px;z-index:80}
+@media(max-width:800px){.products{grid-template-columns:repeat(2,minmax(0,1fr))}.heroIn{grid-template-columns:1fr;padding:40px 18px}.art{display:none}.checkout{grid-template-columns:1fr}.perks{grid-template-columns:1fr}.brandname{display:none}.nav{gap:7px;padding:9px}.product img{height:130px}}
+@media(max-width:430px){.nav{flex-wrap:wrap}.brand{font-size:14px}.search{order:3;flex-basis:100%}.products{gap:9px}.product{padding:8px}.product img{height:105px}.product h3{font-size:14px}.fields,.adminGrid{grid-template-columns:1fr}.field.full{grid-column:auto}main{padding:20px 10px}.hero h1{letter-spacing:-1px}}
 </style>
 </head>
 <body>
-<header>🛍️ AKASH MARKET</header>
-<section class="hero"><h1>Shop Smart. Live Better.</h1><p>Your everyday online market</p><input id="search" placeholder="🔍 Search products..." oninput="renderProducts()"></section>
-<main><h2 style="text-align:center">Our Products</h2><div class="products" id="products"></div>
+<div class="top">WELCOME TO AKASH MARKET · EVERYDAY VALUE, MADE SIMPLE</div>
+<header>
+<nav class="nav">
+<div class="brand"><span class="logo">A</span><span class="brandname">AKASH MARKET</span></div>
+<div class="search"><input id="search" type="search" placeholder="⌕ Search products..." aria-label="Search products"></div>
+<button class="btn login" onclick="openAdmin()">👤 Login</button>
+<button class="btn green" onclick="document.getElementById('checkout').scrollIntoView({behavior:'smooth'})">🛒 <span id="count">0</span></button>
+</nav>
+</header>
+
+<section class="hero">
+<div class="heroIn">
+<div><span class="pill">YOUR EVERYDAY MARKET</span>
+<h1>Shop Smart.<br>Live Better.</h1>
+<p>Discover everyday essentials at great prices. Browse products, add to your cart, and send your order through WhatsApp.</p>
+<a class="btn green" style="display:inline-block;text-decoration:none" href="#shop">Explore Products →</a></div>
+<div class="art">🛍️</div>
+</div>
+</section>
+
+<div class="perks">
+<div class="perk">🚚 Easy Ordering<small>Confirm delivery with the seller</small></div>
+<div class="perk">💚 Everyday Essentials<small>Products for daily life</small></div>
+<div class="perk">📱 WhatsApp Checkout<small>Review your order before sending</small></div>
+</div>
+
+<main>
+<section id="shop">
+<div class="heading"><h2>Popular Products</h2><p>Find something you need today.</p></div>
+<div class="filters" id="filters">
+<button class="filter active" data-cat="All">All products</button>
+<button class="filter" data-cat="Grocery">Grocery</button>
+<button class="filter" data-cat="Home">Home</button>
+<button class="filter" data-cat="Fashion">Fashion</button>
+<button class="filter" data-cat="Electronics">Electronics</button>
+<button class="filter" data-cat="Beauty">Beauty</button>
+</div>
+<div class="products" id="products"></div>
+</section>
+
 <section class="checkout" id="checkout">
-<div class="panel"><h2>🛒 Your Cart</h2><div id="cart">Your cart is empty.</div><p class="total">Total: <span id="total">৳0</span></p></div>
-<div class="panel"><h2>Customer Details</h2><form id="orderForm"><div class="field"><label for="name">Full Name *</label><input id="name" required placeholder="Your name"></div><div class="field"><label for="phone">Phone Number *</label><input id="phone" required inputmode="tel" placeholder="01XXXXXXXXX"></div><div class="field"><label for="address">Delivery Address *</label><textarea id="address" required placeholder="Full address"></textarea></div><div class="field"><label for="payment">Payment Preference</label><select id="payment"><option>Discuss on WhatsApp</option><option>Cash on delivery (confirm first)</option><option>Mobile payment (confirm first)</option></select></div><button class="whatsapp" type="submit">📲 Order via WhatsApp</button><p style="font-size:12px;color:#666">Delivery fee and final order must be confirmed with the seller.</p></form></div>
-</section></main><footer><h2>AKASH MARKET</h2><p>Shop Smart. Live Better.</p></footer>
+<div class="panel">
+<h2>Your Shopping Cart</h2><p class="sub">Change quantities or remove items before ordering.</p>
+<div id="cart"></div>
+<div class="sum"><span>Subtotal</span><strong id="subtotal">৳0</strong></div>
+<div class="sum"><span>Delivery</span><span>Confirm on WhatsApp</span></div>
+<div class="sum grand"><span>Estimated total</span><strong id="total">৳0</strong></div>
+</div>
+<div class="panel">
+<h2>Delivery Details</h2><p class="sub">Your order opens in WhatsApp for confirmation.</p>
+<form id="orderform">
+<div class="fields">
+<div class="field full"><label for="name">Full name *</label><input id="name" required placeholder="Your full name"></div>
+<div class="field"><label for="phone">Phone number *</label><input id="phone" required inputmode="tel" placeholder="01XXXXXXXXX"></div>
+<div class="field"><label for="area">District / area *</label><input id="area" required placeholder="Your area"></div>
+<div class="field full"><label for="address">Full delivery address *</label><textarea id="address" required placeholder="Village, road, house, landmark"></textarea></div>
+<div class="field full"><label for="payment">Preferred payment</label><select id="payment"><option>Discuss on WhatsApp</option><option>Cash on delivery (if available)</option><option>Mobile payment (confirm first)</option></select></div>
+<div class="field full"><label for="notes">Order notes</label><textarea id="notes" placeholder="Size, colour, other requests"></textarea></div>
+</div>
+<button class="whatsapp" id="send" type="submit" disabled>Order via WhatsApp ↗</button>
+<p class="note">Confirm availability, delivery fee, payment and final total with the seller.</p>
+</form>
+</div>
+</section>
+</main>
+
+<div class="modal" id="adminModal">
+<div class="box">
+<div class="boxHead"><h2 id="adminTitle">🔐 Admin Login</h2><button class="btn login" onclick="closeAdmin()">✕ Close</button></div>
+<div id="loginPanel">
+<p class="adminNote">Demo admin login. Change these credentials in the HTML before publishing. This is not secure authentication.</p>
+<div class="adminGrid"><input id="adminUser" placeholder="Username" value="admin"><input id="adminPass" type="password" placeholder="Password"></div>
+<button class="btn green" style="margin-top:12px" onclick="loginAdmin()">Login to Dashboard</button>
+<p class="adminNote">Demo username: <b>admin</b> · Demo password: <b>akash123</b></p>
+</div>
+<div id="dashboardPanel" style="display:none">
+<p class="adminNote">Add products, upload photos, change prices, or delete products. Saved in this browser only.</p>
+<div class="adminGrid">
+<input id="pName" placeholder="Product name">
+<select id="pCat"><option>Grocery</option><option>Home</option><option>Fashion</option><option>Electronics</option><option>Beauty</option><option>Other</option></select>
+<input id="pPrice" type="number" min="0" placeholder="Price in taka">
+<input id="pTag" placeholder="Label e.g. New">
+<input id="pPhoto" type="file" accept="image/*">
+</div>
+<button class="btn green" id="saveBtn" style="margin-top:12px" onclick="saveProduct()">＋ Add Product</button>
+<button class="btn login" style="margin-top:12px" onclick="cancelEdit()">Cancel</button>
+<button class="btn login" style="margin-top:12px" onclick="logoutAdmin()">Log out</button>
+<div id="adminList" class="adminList"></div>
+<p class="adminNote">Important: product changes are stored in this browser only. They do not automatically update for other visitors. A database and secure admin login are needed for a real multi-user marketplace.</p>
+</div>
+</div>
+</div>
+
+<footer><strong>AKASH MARKET</strong><p>Shop smart. Live better.</p><small>© <span id="year"></span> AKASH MARKET</small></footer>
+<div class="toast" id="toast"></div>
+
 <script>
-const WHATSAPP_NUMBER="8801XXXXXXXXX";
-const items=[
-{id:1,name:"Fresh Apples",price:280,emoji:"🍎"},
-{id:2,name:"Coffee Mug",price:220,emoji:"☕"},
-{id:3,name:"Classic T-Shirt",price:450,emoji:"👕"},
-{id:4,name:"Wireless Headphones",price:1250,emoji:"🎧"},
-{id:5,name:"Backpack",price:850,emoji:"🎒"},
-{id:6,name:"Smart Watch",price:1500,emoji:"⌚"},
-{id:7,name:"Water Bottle",price:320,emoji:"🧴"},
-{id:8,name:"Sneakers",price:1450,emoji:"👟"}
+const WHATSAPP_NUMBER="8801752321721";
+
+const defaultItems=[
+{id:1,name:"Fresh Apples",cat:"Grocery",price:280,tag:"Fresh pick",photo:"https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=700&q=80"},
+{id:2,name:"Coffee Mug",cat:"Home",price:220,tag:"Everyday",photo:"https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=700&q=80"},
+{id:3,name:"Classic T-Shirt",cat:"Fashion",price:450,tag:"Popular",photo:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80"},
+{id:4,name:"Wireless Headphones",cat:"Electronics",price:1250,tag:"Tech",photo:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80"},
+{id:5,name:"Grocery Basket",cat:"Grocery",price:650,tag:"Essentials",photo:"https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=700&q=80"},
+{id:6,name:"Water Bottle",cat:"Home",price:320,tag:"Reusable",photo:"https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=700&q=80"},
+{id:7,name:"Casual Sneakers",cat:"Fashion",price:1450,tag:"New",photo:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80"},
+{id:8,name:"Portable Speaker",cat:"Electronics",price:990,tag:"Audio",photo:"https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=700&q=80"}
 ];
-let cart={};
-const money=n=>"৳"+n.toLocaleString("en-BD");
-function renderProducts(){
-const q=document.getElementById("search").value.toLowerCase();
-const list=items.filter(p=>p.name.toLowerCase().includes(q));
-document.getElementById("products").innerHTML=list.map(p=>'<article class="card"><div class="emoji">'+p.emoji+'</div><h3>'+p.name+'</h3><p class="price">'+money(p.price)+'</p><button onclick="add('+p.id+')">＋ Add to Cart</button></article>').join("")||"<p>No products found.</p>";
+
+let items=loadProducts(),cart={},category="All",adminLoggedIn=false,editingId=null,photoData="";
+function loadProducts(){try{return JSON.parse(localStorage.getItem("akashMarketProducts"))||defaultItems}catch(e){return defaultItems}}
+function persist(){try{localStorage.setItem("akashMarketProducts",JSON.stringify(items))}catch(e){alert("Storage is full. Please use a smaller image.")}}
+function byId(id){return items.find(p=>p.id===Number(id))}
+function money(n){return "৳"+Number(n).toLocaleString("en-BD")}
+function safe(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+
+function drawProducts(){
+ const q=document.getElementById("search").value.trim().toLowerCase();
+ const list=items.filter(p=>(category==="All"||p.cat===category)&&(p.name.toLowerCase().includes(q)||p.cat.toLowerCase().includes(q)));
+ document.getElementById("products").innerHTML=list.length?list.map(p=>`
+ <article class="product">
+ <img src="${p.photo||""}" alt="${safe(p.name)}" onerror="this.style.display='none'">
+ <small>${safe(p.cat)} · ${safe(p.tag||"New")}</small>
+ <h3>${safe(p.name)}</h3><div class="price">${money(p.price)}</div>
+ <button class="add" onclick="add(${p.id})">＋ Add to cart</button>
+ </article>`).join(""):'<div style="grid-column:1/-1;text-align:center;padding:25px;background:white">No products found. Try another search.</div>';
 }
-function add(id){cart[id]=(cart[id]||0)+1;renderCart()}
-function change(id,n){cart[id]+=n;if(cart[id]<=0)delete cart[id];renderCart()}
-function renderCart(){
-let ids=Object.keys(cart);
-let total=ids.reduce((s,id)=>s+items.find(p=>p.id==id).price*cart[id],0);
-document.getElementById("total").textContent=money(total);
-document.getElementById("cart").innerHTML=ids.length?ids.map(id=>{let p=items.find(x=>x.id==id);return '<div class="cartrow"><b>'+p.emoji+' '+p.name+'</b><br>'+money(p.price)+' × '+cart[id]+'<div class="qty"><button type="button" onclick="change('+id+',-1)">−</button><span>'+cart[id]+'</span><button type="button" onclick="change('+id+',1)">+</button><button type="button" onclick="delete cart['+id+'];renderCart()">Remove</button></div></div>'}).join(""):"Your cart is empty.";
+function add(id){cart[id]=(cart[id]||0)+1;drawCart();toast("Added to cart")}
+function qty(id,n){cart[id]=(cart[id]||0)+n;if(cart[id]<=0)delete cart[id];drawCart()}
+function removeItem(id){delete cart[id];drawCart()}
+function drawCart(){
+ const rows=Object.entries(cart).filter(([id,q])=>q>0);
+ const count=rows.reduce((s,[id,q])=>s+q,0);
+ const total=rows.reduce((s,[id,q])=>s+byId(id).price*q,0);
+ document.getElementById("count").textContent=count;
+ document.getElementById("subtotal").textContent=money(total);
+ document.getElementById("total").textContent=money(total);
+ document.getElementById("send").disabled=!count;
+ document.getElementById("cart").innerHTML=rows.length?rows.map(([id,q])=>{
+ const p=byId(id);
+ return `<div class="cartrow"><div>${p.photo?`<img src="${p.photo}" alt="">`:"📦"}</div>
+ <div><strong>${safe(p.name)}</strong><small>${money(p.price)} each</small>
+ <div class="qty"><button type="button" onclick="qty(${id},-1)">−</button><span>${q}</span><button type="button" onclick="qty(${id},1)">＋</button><button type="button" onclick="removeItem(${id})">Remove</button></div></div>
+ <strong>${money(p.price*q)}</strong></div>`;
+ }).join(""):'<p style="text-align:center;color:#69766e;padding:20px">🛒 Your cart is empty.</p>';
 }
-document.getElementById("orderForm").addEventListener("submit",function(e){
-e.preventDefault();
-if(!Object.keys(cart).length){alert("Please add a product to your cart.");return}
-if(WHATSAPP_NUMBER.includes("X")){alert("Please replace 8801XXXXXXXXX in the HTML code with your WhatsApp number, including 880 country code.");return}
-let total=0;
-let lines=Object.keys(cart).map(id=>{let p=items.find(x=>x.id==id);total+=p.price*cart[id];return p.name+" x "+cart[id]+" = "+money(p.price*cart[id])});
-let msg="AKASH MARKET ORDER%0AName: "+encodeURIComponent(document.getElementById("name").value)+"%0APhone: "+encodeURIComponent(document.getElementById("phone").value)+"%0AAddress: "+encodeURIComponent(document.getElementById("address").value)+"%0A%0AProducts:%0A"+encodeURIComponent(lines.join("\n"))+"%0A%0ATotal: "+encodeURIComponent(money(total))+"%0APayment: "+encodeURIComponent(document.getElementById("payment").value);
-window.open("https://wa.me/"+WHATSAPP_NUMBER+"?text="+msg,"_blank");
+function toast(t){const e=document.getElementById("toast");e.textContent=t;e.style.display="block";setTimeout(()=>e.style.display="none",2000)}
+
+document.getElementById("search").addEventListener("input",drawProducts);
+document.getElementById("filters").addEventListener("click",e=>{
+ const b=e.target.closest("[data-cat]");if(!b)return;
+ category=b.dataset.cat;
+ document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x===b));
+ drawProducts();
 });
-renderProducts();renderCart();
-</script>
-</body>
-</html>
+
+document.getElementById("orderform").addEventListener("submit",e=>{
+ e.preventDefault();
+ const rows=Object.entries(cart);
+ if(!rows.length)return;
+ const total=rows.reduce((s,[id,q])=>s+byId(id).price*q,0);
+ let msg="NEW ORDER - AKASH MARKET\n\nCustomer: "+document.getElementById("name").value+
+ "\nPhone: "+document.getElementById("phone").value+
+ "\nArea: "+document.getElementById("area").value+
+ "\nAddress: "+document.getElementById("address").value+"\n\nProducts:\n";
+ rows.forEach(([id,q])=>{const p=byId(id);msg+=p.name+" x "+q+" = "+money(p.price*q)+"\n"});
+ msg+="\nEstimated subtotal: "+money(total)+"\nDelivery: To be confirmed\nPayment: "+document.getElementById("payment").value;
+ const notes=document.getElementById("notes").value.trim();if(notes)msg+="\nNotes: "+notes;
+ window.open("https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(msg),"_blank");
+});
+
+function openAdmin(){
+ document.getElementById("adminModal").style.display="block";
+ document.getElementById("loginPanel").style.display=adminLoggedIn?"none":"block";
+ document.getElementById("dashboardPanel").style.display=adminLoggedIn?"block":"none";
+ document.getElementById("adminTitle").textContent=adminLoggedIn?"🛠️ Product Dashboard":"🔐 Admin Login";
+ if(adminLoggedIn)drawAdminList();
+}
+function closeAdmin(){document.getElementById("adminModal").style.display="none"}
+function loginAdmin(){
+ if(document.getElementById("adminUser").value.trim()==="admin"&&document.getElementById("adminPass").value==="akash123"){
+ adminLoggedIn=true;openAdmin();toast("Dashboard opened");
+ }else alert("Incorrect username or password.");
+}
+function logoutAdmin(){adminLoggedIn=false;editingId=null;closeAdmin()}
+function drawAdminList(){
+ document.getElementById("adminList").innerHTML="<h3>Manage products and prices</h3>"+items.map(p=>`
+ <div class="adminItem"><span><b>${safe(p.name)}</b><br>${money(p.price)} · ${safe(p.cat)}</span>
+ <span><button onclick="editProduct(${p.id})">✏️ Edit</button> <button onclick="deleteProduct(${p.id})">🗑️</button></span></div>`).join("");
+}
+function saveProduct(){
+ if(!adminLoggedIn)return;
+ const name=document.getElementById("pName").value.trim();
+ const cat=document.getElementById("pCat").value;
+ const price=Number(document.getElementById("pPrice").value);
+ const tag=document.getElementById("pTag").value.trim()||"New";
+ if(!name||document.getElementById("pPrice").value===""||price<0){alert("Enter product name and a valid price.");return}
+ const existing=editingId?byId(editingId):null;
+ const product={id:editingId||Date.now(),name,cat,price,tag,photo:photoData||(existing?existing.photo:"")};
+ if(existing)items=items.map(p=>p.id===editingId?product:p);else items.unshift(product);
+ persist();drawProducts();drawCart();drawAdminList();cancelEdit();toast("Product saved");
+}
+function editProduct(id){
+ const p=byId(id);if(!p)return;
+ editingId=id;photoData="";
+ document.getElementById("pName").value=p.name;
+ document.getElementById("pCat").value=p.cat;
+ document.getElementById("pPrice").value=p.price;
+ document.getElementById("pTag").value=p.tag||"";
+ document.getElementById("pPhoto").value="";
+ document.getElementById("saveBtn").textContent="✓ Save Changes";
+ document.getElementById("pName").scrollIntoView({behavior:"smooth",block:"center"});
+}
+function cancelEdit(){
+ editingId=null;photoData="";
+ ["pName","pPrice","pTag"].forEach(id=>document.getElementById(id).value="");
+ document.getElementById("pPhoto").value="";
+ document.getElementById("saveBtn").textContent="＋ Add Product";
+}
+function deleteProduct(id){
+ const p=byId(id);if(!p||!confirm("Delete "+p.name+"?"))return;
+ items=items.filter(x=>x.id!==id);delete cart[id];persist();drawProducts();drawCart();drawAdminList();
+}
+document.getElementById("pPhoto").addEventListener("change",e=>{
+ const f=e.target.files&&e.target.files[0];if(!f)return;
+ if(!f.type.startsWith("i
