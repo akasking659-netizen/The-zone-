@@ -1,29 +1,58 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Akash Market</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AKASH MARKET</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f5f7f5;color:#17211b}header{background:#123c28;color:white;padding:20px;text-align:center;font-size:25px;font-weight:bold}.hero{text-align:center;background:#d9f99d;padding:30px 15px}.hero h1{font-size:32px}.search{width:90%;padding:13px;border:1px solid #ccc;border-radius:8px}.products{padding:16px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:white;border-radius:12px;padding:12px;text-align:center;box-shadow:0 2px 8px #0001}.pic{font-size:48px;background:#edf4ec;padding:15px;border-radius:10px}.price{font-size:19px;font-weight:bold;color:#16794b}.btn{background:#16794b;color:white;border:0;border-radius:8px;padding:11px;width:100%}footer{background:#123c28;color:white;text-align:center;padding:20px}@media(min-width:650px){.products{grid-template-columns:repeat(4,1fr)}}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f3f7f2;color:#173b2b}header{background:#075e43;color:white;padding:18px;text-align:center;font-size:24px;font-weight:bold}.hero{background:#ddfca5;text-align:center;padding:40px 15px}.hero h1{font-size:38px}.hero input{width:95%;max-width:500px;padding:14px;border:1px solid #ccc;border-radius:10px}.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:15px;max-width:1000px;margin:auto}.card,.panel{background:white;padding:15px;border-radius:15px;box-shadow:0 4px 15px #0001}.emoji{font-size:55px;background:#eef5ec;border-radius:12px;padding:20px;text-align:center}.card h3{min-height:38px}.price{font-size:21px;color:#08744d;font-weight:bold}button{cursor:pointer;border:0;border-radius:9px;padding:11px;background:#08744d;color:white;font-weight:bold}.card button{width:100%;margin-top:10px}.checkout{max-width:900px;margin:15px auto;padding:15px;display:grid;grid-template-columns:1fr 1fr;gap:14px}.panel h2{margin-top:0}.cartrow{padding:10px 0;border-bottom:1px solid #ddd}.qty{display:flex;align-items:center;gap:8px;margin-top:8px}.qty button{padding:6px 12px}.field{margin:12px 0}.field label{display:block;margin-bottom:5px;font-weight:bold}.field input,.field textarea,.field select{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px}.field textarea{min-height:70px}.whatsapp{width:100%;background:#16884b;margin-top:10px}.total{font-size:21px;font-weight:bold;border-top:1px solid #ddd;padding-top:12px}footer{background:#103d2e;color:white;text-align:center;padding:24px}@media(max-width:600px){.checkout{grid-template-columns:1fr}.hero h1{font-size:32px}.products{gap:10px;padding:10px}.card{padding:10px}.emoji{font-size:45px;padding:15px}}
 </style>
 </head>
 <body>
 <header>🛍️ AKASH MARKET</header>
-<section class="hero"><h1>Shop Smart. Live Better.</h1><p>Your everyday online market</p><input class="search" id="q" placeholder="Search products..." oninput="filter()"></section>
-<main class="products" id="products">
-<div class="card" data-name="Fresh Apples"><div class="pic">🍎</div><h3>Fresh Apples</h3><p class="price">৳280</p><button class="btn" onclick="order('Fresh Apples',280)">Order Now</button></div>
-<div class="card" data-name="Coffee Mug"><div class="pic">☕</div><h3>Coffee Mug</h3><p class="price">৳220</p><button class="btn" onclick="order('Coffee Mug',220)">Order Now</button></div>
-<div class="card" data-name="T Shirt"><div class="pic">👕</div><h3>T-Shirt</h3><p class="price">৳450</p><button class="btn" onclick="order('T-Shirt',450)">Order Now</button></div>
-<div class="card" data-name="Wireless Earbuds"><div class="pic">🎧</div><h3>Wireless Earbuds</h3><p class="price">৳1250</p><button class="btn" onclick="order('Wireless Earbuds',1250)">Order Now</button></div>
-<div class="card" data-name="Backpack"><div class="pic">🎒</div><h3>Backpack</h3><p class="price">৳890</p><button class="btn" onclick="order('Backpack',890)">Order Now</button></div>
-<div class="card" data-name="Fresh Bananas"><div class="pic">🍌</div><h3>Fresh Bananas</h3><p class="price">৳80</p><button class="btn" onclick="order('Fresh Bananas',80)">Order Now</button></div>
-</main>
-<footer><h3>AKASH MARKET</h3><p>Contact us to place your order.</p></footer>
+<section class="hero"><h1>Shop Smart. Live Better.</h1><p>Your everyday online market</p><input id="search" placeholder="🔍 Search products..." oninput="renderProducts()"></section>
+<main><h2 style="text-align:center">Our Products</h2><div class="products" id="products"></div>
+<section class="checkout" id="checkout">
+<div class="panel"><h2>🛒 Your Cart</h2><div id="cart">Your cart is empty.</div><p class="total">Total: <span id="total">৳0</span></p></div>
+<div class="panel"><h2>Customer Details</h2><form id="orderForm"><div class="field"><label for="name">Full Name *</label><input id="name" required placeholder="Your name"></div><div class="field"><label for="phone">Phone Number *</label><input id="phone" required inputmode="tel" placeholder="01XXXXXXXXX"></div><div class="field"><label for="address">Delivery Address *</label><textarea id="address" required placeholder="Full address"></textarea></div><div class="field"><label for="payment">Payment Preference</label><select id="payment"><option>Discuss on WhatsApp</option><option>Cash on delivery (confirm first)</option><option>Mobile payment (confirm first)</option></select></div><button class="whatsapp" type="submit">📲 Order via WhatsApp</button><p style="font-size:12px;color:#666">Delivery fee and final order must be confirmed with the seller.</p></form></div>
+</section></main><footer><h2>AKASH MARKET</h2><p>Shop Smart. Live Better.</p></footer>
 <script>
-function filter(){let q=document.getElementById('q').value.toLowerCase();document.querySelectorAll('.card').forEach(c=>c.style.display=c.dataset.name.toLowerCase().includes(q)?'block':'none')}
-function order(name,price){alert('You selected '+name+' - ৳'+price+'. Please contact the store to complete your order.')}
+const WHATSAPP_NUMBER="8801XXXXXXXXX";
+const items=[
+{id:1,name:"Fresh Apples",price:280,emoji:"🍎"},
+{id:2,name:"Coffee Mug",price:220,emoji:"☕"},
+{id:3,name:"Classic T-Shirt",price:450,emoji:"👕"},
+{id:4,name:"Wireless Headphones",price:1250,emoji:"🎧"},
+{id:5,name:"Backpack",price:850,emoji:"🎒"},
+{id:6,name:"Smart Watch",price:1500,emoji:"⌚"},
+{id:7,name:"Water Bottle",price:320,emoji:"🧴"},
+{id:8,name:"Sneakers",price:1450,emoji:"👟"}
+];
+let cart={};
+const money=n=>"৳"+n.toLocaleString("en-BD");
+function renderProducts(){
+const q=document.getElementById("search").value.toLowerCase();
+const list=items.filter(p=>p.name.toLowerCase().includes(q));
+document.getElementById("products").innerHTML=list.map(p=>'<article class="card"><div class="emoji">'+p.emoji+'</div><h3>'+p.name+'</h3><p class="price">'+money(p.price)+'</p><button onclick="add('+p.id+')">＋ Add to Cart</button></article>').join("")||"<p>No products found.</p>";
+}
+function add(id){cart[id]=(cart[id]||0)+1;renderCart()}
+function change(id,n){cart[id]+=n;if(cart[id]<=0)delete cart[id];renderCart()}
+function renderCart(){
+let ids=Object.keys(cart);
+let total=ids.reduce((s,id)=>s+items.find(p=>p.id==id).price*cart[id],0);
+document.getElementById("total").textContent=money(total);
+document.getElementById("cart").innerHTML=ids.length?ids.map(id=>{let p=items.find(x=>x.id==id);return '<div class="cartrow"><b>'+p.emoji+' '+p.name+'</b><br>'+money(p.price)+' × '+cart[id]+'<div class="qty"><button type="button" onclick="change('+id+',-1)">−</button><span>'+cart[id]+'</span><button type="button" onclick="change('+id+',1)">+</button><button type="button" onclick="delete cart['+id+'];renderCart()">Remove</button></div></div>'}).join(""):"Your cart is empty.";
+}
+document.getElementById("orderForm").addEventListener("submit",function(e){
+e.preventDefault();
+if(!Object.keys(cart).length){alert("Please add a product to your cart.");return}
+if(WHATSAPP_NUMBER.includes("X")){alert("Please replace 8801XXXXXXXXX in the HTML code with your WhatsApp number, including 880 country code.");return}
+let total=0;
+let lines=Object.keys(cart).map(id=>{let p=items.find(x=>x.id==id);total+=p.price*cart[id];return p.name+" x "+cart[id]+" = "+money(p.price*cart[id])});
+let msg="AKASH MARKET ORDER%0AName: "+encodeURIComponent(document.getElementById("name").value)+"%0APhone: "+encodeURIComponent(document.getElementById("phone").value)+"%0AAddress: "+encodeURIComponent(document.getElementById("address").value)+"%0A%0AProducts:%0A"+encodeURIComponent(lines.join("\n"))+"%0A%0ATotal: "+encodeURIComponent(money(total))+"%0APayment: "+encodeURIComponent(document.getElementById("payment").value);
+window.open("https://wa.me/"+WHATSAPP_NUMBER+"?text="+msg,"_blank");
+});
+renderProducts();renderCart();
 </script>
 </body>
 </html>
